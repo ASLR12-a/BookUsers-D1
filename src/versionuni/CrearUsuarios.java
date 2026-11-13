@@ -65,5 +65,8 @@ public class CrearUsuarios extends Component {
     }
 
 
+    public static void main(String[] args) {
+        new CrearUsuarios().setVisible(true);
+    }
 
 }
