@@ -137,6 +137,26 @@ public class CrearUsuarios extends Component {
         boolean ceOk = !ce2.getText().trim().isEmpty();
         boolean fotoOk = archivoSeleccionado != null;
 
+     // el boton guaeda toda la info
+        btnguardarinfo.addActionListener(e -> {
+            Usuario u = new Usuario();
+            u.id = String.valueOf(ListaUsuarios.usuarios.size() + 1);
+            u.tipoId = (String) Boxti.getSelectedItem();
+            u.numId = ni2.getText();
+            u.nombre = pn2.getText() + " " + sn2.getText();
+            u.apellido = pa2.getText() + " " + sa2.getText();
+            u.password = new String(pass2.getPassword());
+            u.telefono = tl2.getText();
+            u.correo = ce2.getText();
+            u.foto = btnfotoguardar.getText();
+
+            ListaUsuarios.usuarios.add(u);
+            ListaUsuarios.guardar();
+
+            JOptionPane.showMessageDialog(null, "Usuario guardado");
+            SwingUtilities.getWindowAncestor(PantallaSegundaria).dispose();
+        });
+
         // Se activa únicamente si todos los obligatorios están llenos
         btnguardarinfo.setEnabled(tipoIdOk && niOk && pnOk && paOk && passOk && tlOk && ceOk && fotoOk);
     }

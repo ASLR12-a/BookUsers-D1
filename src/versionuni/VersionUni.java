@@ -17,6 +17,10 @@ public class VersionUni extends JFrame {
     pack();
     setLocationRelativeTo(null);
     setSize(800, 500);
+        creditosDelCreadorButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "Adrian Lopez y Leidy Niño");
+        });
+
     }
 
     public static void main (String[] args) {
