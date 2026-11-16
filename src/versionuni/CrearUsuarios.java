@@ -30,8 +30,9 @@ public class CrearUsuarios extends Component {
     private JComboBox Boxti;
     private JButton btnfotoguardar;
     private JButton btnguardarinfo;
+    private JTextField txtUsername;
+    private JLabel user;
 
-    // Variable para controlar si ya se subió la foto
     private File archivoSeleccionado = null;
 
     // GETTERS AND SETTERS
@@ -81,53 +82,94 @@ public class CrearUsuarios extends Component {
         Boxti.addItem("Documento de identificacion extranjero");
         Boxti.addItem("PEP");
 
-        // 1. Iniciar validación en tiempo real
+        txtUsername.setEditable(false);
+
         configurarValidacion();
 
-        // Importar clase para la foto
         btnfotoguardar.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
-            int resultado = fileChooser.showOpenDialog(this);
+            int resultado = fileChooser.showOpenDialog(ventana);
             if (resultado == JFileChooser.APPROVE_OPTION) {
                 archivoSeleccionado = fileChooser.getSelectedFile();
                 btnfotoguardar.setText("Foto cargada: " + archivoSeleccionado.getName());
-                verificarCampos(); // Revisa si ya se puede activar Guardar info
+                verificarCampos();
             }
         });
 
-        // Guardar info final
         btnguardarinfo.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Usuario guardado: " + pn2.getText());
+            Usuario u = new Usuario();
+            int maxId = 0;
+            for (Usuario user : ListaUsuarios.usuarios) {
+                try {
+                    int currentId = Integer.parseInt(user.id);
+                    if (currentId > maxId) maxId = currentId;
+                } catch (NumberFormatException ex) {
+
+                }
+            }
+            u.id = String.valueOf(maxId + 1);
+            u.tipoId = (String) Boxti.getSelectedItem();
+            u.numId = ni2.getText();
+            u.nombre = pn2.getText() + " " + sn2.getText();
+            u.apellido = pa2.getText() + " " + sa2.getText();
+            u.username = txtUsername.getText();
+            u.password = new String(pass2.getPassword());
+            u.telefono = tl2.getText();
+            u.correo = ce2.getText();
+            u.foto = (archivoSeleccionado != null) ? archivoSeleccionado.getAbsolutePath() : "";
+
+            ListaUsuarios.usuarios.add(u);
+            ListaUsuarios.guardar();
+
+            JOptionPane.showMessageDialog(null, "Usuario guardado");
+            SwingUtilities.getWindowAncestor(PantallaSegundaria).dispose();
         });
     }
 
     private void configurarValidacion() {
-        // Desactivar el botón al abrir la ventana
         btnguardarinfo.setEnabled(false);
 
         DocumentListener listenerTexto = new DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) { verificarCampos(); }
+            public void insertUpdate(DocumentEvent e) {
+                generarUsername();
+                verificarCampos();
+            }
             @Override
-            public void removeUpdate(DocumentEvent e) { verificarCampos(); }
+            public void removeUpdate(DocumentEvent e) {
+                generarUsername();
+                verificarCampos();
+            }
             @Override
-            public void changedUpdate(DocumentEvent e) { verificarCampos(); }
+            public void changedUpdate(DocumentEvent e) {
+                generarUsername();
+                verificarCampos();
+            }
         };
 
-        // Escuchar cambios en los campos obligatorios (sn2 y sa2 quedan excluidos por ser opcionales)
         ni2.getDocument().addDocumentListener(listenerTexto);
         pn2.getDocument().addDocumentListener(listenerTexto);
         pa2.getDocument().addDocumentListener(listenerTexto);
+        sa2.getDocument().addDocumentListener(listenerTexto);
         pass2.getDocument().addDocumentListener(listenerTexto);
         tl2.getDocument().addDocumentListener(listenerTexto);
         ce2.getDocument().addDocumentListener(listenerTexto);
 
-        // Escuchar cambios en el JComboBox
         Boxti.addActionListener(e -> verificarCampos());
     }
 
+    private void generarUsername() {
+        String primerNombre = pn2.getText().trim().toLowerCase().replace(" ", "");
+        String primerApellido = pa2.getText().trim().toLowerCase();
+        String segundoApellido = sa2.getText().trim().toLowerCase();
+
+        String inicialPA = primerApellido.isEmpty() ? "" : primerApellido.substring(0, 1);
+        String inicialSA = segundoApellido.isEmpty() ? "" : segundoApellido.substring(0, 1);
+
+        txtUsername.setText(inicialPA + inicialSA + primerNombre);
+    }
+
     private void verificarCampos() {
-        // Índice > 0 porque el índice 0 es el espacio en blanco ("                ")
         boolean tipoIdOk = Boxti.getSelectedIndex() > 0;
         boolean niOk = !ni2.getText().trim().isEmpty();
         boolean pnOk = !pn2.getText().trim().isEmpty();
@@ -137,27 +179,6 @@ public class CrearUsuarios extends Component {
         boolean ceOk = !ce2.getText().trim().isEmpty();
         boolean fotoOk = archivoSeleccionado != null;
 
-     // el boton guaeda toda la info
-        btnguardarinfo.addActionListener(e -> {
-            Usuario u = new Usuario();
-            u.id = String.valueOf(ListaUsuarios.usuarios.size() + 1);
-            u.tipoId = (String) Boxti.getSelectedItem();
-            u.numId = ni2.getText();
-            u.nombre = pn2.getText() + " " + sn2.getText();
-            u.apellido = pa2.getText() + " " + sa2.getText();
-            u.password = new String(pass2.getPassword());
-            u.telefono = tl2.getText();
-            u.correo = ce2.getText();
-            u.foto = btnfotoguardar.getText();
-
-            ListaUsuarios.usuarios.add(u);
-            ListaUsuarios.guardar();
-
-            JOptionPane.showMessageDialog(null, "Usuario guardado");
-            SwingUtilities.getWindowAncestor(PantallaSegundaria).dispose();
-        });
-
-        // Se activa únicamente si todos los obligatorios están llenos
         btnguardarinfo.setEnabled(tipoIdOk && niOk && pnOk && paOk && passOk && tlOk && ceOk && fotoOk);
     }
 

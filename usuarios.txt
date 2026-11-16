@@ -1,2 +1,9 @@
-1;CC;1096207293;adrian sneyder;lopez rodriguez;null;1212;3162329692;adriansnyder12@gmail.com;Foto cargada: 1212
-2;CC;1096207293;adrian sneyder;lopez rodriguez;null;1212;3162329692;adriansnyder12@gmail.com;Foto cargada: 1212
+1;CC;1097184789;leidy ;niño castañeda;null;1010;310 4657236;ninocastañedaleidy@gmail.com;Foto cargada: 10
+2;CC;1096207293;adrian sneyder;lopez rodriguez;null;1212;3162329692;adriansneyder12@gmail.com;Foto cargada: 12
+3;CC;1096207293;adrian ;lopez rodriguez;null;1212;3162329692;adriansneyder@gmail com;Foto cargada: 1212
+4;CC;1097184789;leidy ;niño castañeda;ncleidy;salmoncito;3104657236;ninocastañedaleidy@gmail.com;Foto cargada: 10
+5;CC;1097184789;leidy ;niño castañeda;ncleidy;1212;3104657236;ninocastanedaleidy@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\10
+6;CC;1096207293;adrian sneydder ;lopez rodriguez;lradrian;1212;3162329392;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\1212
+7;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3162329692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\12112
+8;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3162329692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\1212
+9;CC;1097184789;leidy ;niño castañeda;ncleidy;1212;3104657236;ninocastanedaleidy@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\10
