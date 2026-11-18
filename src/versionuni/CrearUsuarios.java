@@ -35,7 +35,6 @@ public class CrearUsuarios extends Component {
 
     private File archivoSeleccionado = null;
 
-    // GETTERS AND SETTERS
     public JTextField getNi2() { return ni2; }
     public void setNi2(JTextField ni2) { this.ni2 = ni2; }
 
@@ -60,11 +59,32 @@ public class CrearUsuarios extends Component {
     public JTextField getCe2() { return ce2; }
     public void setCe2(JTextField ce2) { this.ce2 = ce2; }
 
-    // Constructor
     public CrearUsuarios() {
         JFrame ventana = new JFrame("Registrar usuario");
         ventana.setTitle("BookUser - Crear usuarios");
-        ventana.setContentPane(PantallaSegundaria);
+
+        // AQUÍ PONEMOS EL GATO DE LA PATICA COMO FONDO
+        JPanel panelConFondo = new JPanel() {
+            private final Image imagenFondo = new ImageIcon("src/imagenescute/gato_fondo.jpg.jpeg").getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        panelConFondo.setLayout(new BorderLayout());
+
+        PantallaSegundaria.setOpaque(false);
+        for (Component c : PantallaSegundaria.getComponents()) {
+            if (c instanceof JPanel) {
+                ((JPanel) c).setOpaque(false);
+            }
+        }
+
+        panelConFondo.add(PantallaSegundaria, BorderLayout.CENTER);
+
+        ventana.setContentPane(panelConFondo);
         ventana.setSize(800, 800);
         ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventana.pack();
@@ -121,8 +141,20 @@ public class CrearUsuarios extends Component {
             ListaUsuarios.usuarios.add(u);
             ListaUsuarios.guardar();
 
-            JOptionPane.showMessageDialog(null, "Usuario guardado");
-            SwingUtilities.getWindowAncestor(PantallaSegundaria).dispose();
+            // AQUÍ PONEMOS EL GATO PENSANDO PARA LA VENTANA DE ÉXITO
+            ImageIcon iconoGato = new ImageIcon("src/imagenescute/gato_pensando.jpg.jpeg");
+            Image imagenEscalada = iconoGato.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+            ImageIcon iconoFinal = new ImageIcon(imagenEscalada);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "¡Termine de ingresar la información correctamente!",
+                    "Registro Exitoso",
+                    JOptionPane.INFORMATION_MESSAGE,
+                    iconoFinal
+            );
+
+            SwingUtilities.getWindowAncestor(panelConFondo).dispose();
         });
     }
 
