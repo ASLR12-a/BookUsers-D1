@@ -7,3 +7,8 @@
 7;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3162329692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\12112
 8;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3162329692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\1212
 9;CC;1097184789;leidy ;niño castañeda;ncleidy;1212;3104657236;ninocastanedaleidy@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\10
+10;CC;11012035222;Manuel Jose;Londoño Vergara;lvmanuel;3008;3247801818;manuel.lonodonover@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\10
+11;CC;1097184788;ariadna ;niño ;nariadna;1010;3104686847;ninocastanenaariadna.9420@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Documentos\10
+12;CC;10971847 88;ariadna ;niño  ;nariadna;1010;3104686847;ninocastanenaariadna .9420@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\10.jpeg
+13;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3163239692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\1212.jpeg
+14;CC;1097184789;leidy ;niño castañeda;ncleidy;1010;310 4657236 ;ninocastanenaleidy@gamil.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\7272.jpeg

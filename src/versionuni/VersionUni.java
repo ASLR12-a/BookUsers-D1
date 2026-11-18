@@ -14,7 +14,7 @@ public class VersionUni extends JFrame {
     private JPanel pantalla;
 
     public VersionUni() {
-        setTitle("BookUser - Usuarios");
+        setTitle("BookUser - Adrian Lopez y Leidy Niño");
         setContentPane(pantalla);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
