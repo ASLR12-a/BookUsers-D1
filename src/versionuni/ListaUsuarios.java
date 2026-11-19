@@ -5,26 +5,23 @@ import java.util.ArrayList;
 
 public class ListaUsuarios {
 
+    private static final String RUTA_ARCHIVO = "usuarios.txt";
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
-    public static void guardar() {
-        try {
 
-            PrintWriter escritor = new PrintWriter(new FileWriter("C:\\Users\\FLIA LOPEZ\\BookUsers-D1\\usuarios.txt"));
+    public static void guardar() {
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(RUTA_ARCHIVO))) {
             for (Usuario u : usuarios) {
                 escritor.println(u.id + ";" + u.tipoId + ";" + u.numId + ";" + u.nombre + ";"
                         + u.apellido + ";" + u.username + ";" + u.password + ";"
                         + u.telefono + ";" + u.correo + ";" + u.foto);
             }
-            escritor.close();
         } catch (IOException e) {
-            System.out.println("No se pudo guardar");
+            System.out.println("No se pudo guardar: " + e.getMessage());
         }
     }
 
     public static void cargar() {
-
-        File archivo = new File("C:\\Users\\FLIA LOPEZ\\BookUsers-D1\\usuarios.txt");
-
+        File archivo = new File(RUTA_ARCHIVO);
         if (!archivo.exists()) return;
 
         usuarios.clear();
@@ -48,7 +45,7 @@ public class ListaUsuarios {
                 }
             }
         } catch (IOException e) {
-            System.out.println("No se pudo cargar");
+            System.out.println("No se pudo cargar: " + e.getMessage());
         }
     }
 }

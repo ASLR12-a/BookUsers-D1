@@ -1,4 +1,2 @@
-1;CC;1096207293;Adrian;Lopez Rodriguez;lradrian;adrianteodio;3162329692;adriansneyder12@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\1212.jpeg
-2;CC;1097184789;Leidy;Niño Castañeda;ncleidy;adrianteodioi;3104657236;ninocastanedaleidy@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\7272.jpeg
-3;CC;109718489;Leidy;Niño Castañeda;ncleidy;adrianteodio;3104657236;ninocastanedaleidy@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\7272.jpeg
-4;CC;1097184788;Ariadna;Niño Castañeda;ncariadna;adrainteodio;3104686847;ninocastanedaaariadna.9294@gmail.com;C:\Users\FLIA LOPEZ\OneDrive\Desktop\Nueva carpeta (2)\10.jpeg
+1;CC;1097194789;Leidy;Niño Castañeda;ncleidy;adrianteodio;3104657236;ninocastanedaleidy@gmail.com;fotos_usuarios\1795124838878_7272.jpg
+2;CC;1097184788;Ariadna;Niño Castañeda;ncariadna;12345;3104686847;ninocastanedaariadna.9420@gmail.com;fotos_usuarios\1795125151961_8282.jpeg

@@ -1,54 +1,48 @@
 package versionuni;
 
 import javax.swing.*;
-        import java.awt.*;
+import java.awt.*;
+
+// MENUUUUUUU
+
+
 
 public class VersionUni extends JFrame {
     private JButton verUsuariosButton;
     private JButton creditosDelCreadorButton;
     private JButton crearUsuariosButton;
-
-
     private JButton generarpdfButton;
-
     private JPanel pantalla;
 
     public VersionUni() {
-
-       setTitle("BookUser - Adrian Lopez y Leidy Niño");
+        setTitle("BookUser - Adrian Lopez y Leidy Niño");
         setContentPane(pantalla);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setSize(800, 500);
         setLocationRelativeTo(null);
 
-
         ListaUsuarios.cargar();
 
         verUsuariosButton.addActionListener(e -> {
             if (ListaUsuarios.usuarios.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No hay usuarios registrados.");
+                JOptionPane.showMessageDialog(this, "No hay usuarios registrados.");
             } else {
-                String texto = "";
-                for (Usuario u : ListaUsuarios.usuarios) {
-                    texto += "ID: " + u.id + " | Usuario: " + u.username + " | Nombre: " + u.nombre + " " + u.apellido + "\n";
-                }
-                JOptionPane.showMessageDialog(null, texto);
+                new Listado(ListaUsuarios.usuarios).setVisible(true);
             }
         });
 
         creditosDelCreadorButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Adrian Lopez y Leidy Niño");
+            JOptionPane.showMessageDialog(this, "Adrian Lopez y Leidy Niño");
         });
 
         crearUsuariosButton.addActionListener(e -> {
             new CrearUsuarios();
         });
 
-
         generarpdfButton.addActionListener(e -> {
             if (ListaUsuarios.usuarios.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No hay usuarios registrados para exportar.");
+                JOptionPane.showMessageDialog(this, "No hay usuarios registrados para exportar.");
             } else {
                 GeneradorPDF.exportarUsuarios();
             }

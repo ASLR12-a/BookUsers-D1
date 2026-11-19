@@ -5,6 +5,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class CrearUsuarios extends JFrame {
     private JPanel PantallaSegundaria;
@@ -35,6 +38,7 @@ public class CrearUsuarios extends JFrame {
     private JLabel user;
 
     private File archivoSeleccionado = null;
+    private String rutaFotoRelativa = "";
     private Usuario usuarioEditando = null;
     private JFrame ventana;
 
@@ -94,6 +98,7 @@ public class CrearUsuarios extends JFrame {
 
             if (this.usuarioEditando.foto != null && !this.usuarioEditando.foto.trim().isEmpty()) {
                 archivoSeleccionado = new File(this.usuarioEditando.foto);
+                rutaFotoRelativa = this.usuarioEditando.foto.trim();
                 btnfotoguardar.setText("Foto actual: " + archivoSeleccionado.getName());
             }
         }
@@ -129,6 +134,29 @@ public class CrearUsuarios extends JFrame {
             }
         }
         return false;
+    }
+
+    private String copiarFotoAlProyecto(File origen) {
+        try {
+            File carpetaDestino = new File("fotos_usuarios");
+            if (!carpetaDestino.exists()) {
+                carpetaDestino.mkdirs();
+            }
+
+            String nombreLimpio = System.currentTimeMillis() + "_" + origen.getName().replaceAll("\\s+", "_");
+            File destino = new File(carpetaDestino, nombreLimpio);
+            Files.copy(origen.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            return destino.getPath();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(
+                    ventana,
+                    "No se pudo copiar la foto al proyecto: " + ex.getMessage(),
+                    "Error de foto",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return "";
+        }
     }
 
     private void inicializarVentana() {
@@ -180,9 +208,14 @@ public class CrearUsuarios extends JFrame {
             JFileChooser fileChooser = new JFileChooser();
             int resultado = fileChooser.showOpenDialog(ventana);
             if (resultado == JFileChooser.APPROVE_OPTION) {
-                archivoSeleccionado = fileChooser.getSelectedFile();
-                btnfotoguardar.setText("Foto cargada: " + archivoSeleccionado.getName());
-                verificarCampos();
+                File seleccionado = fileChooser.getSelectedFile();
+                String rutaCopiada = copiarFotoAlProyecto(seleccionado);
+                if (!rutaCopiada.isEmpty()) {
+                    archivoSeleccionado = new File(rutaCopiada);
+                    rutaFotoRelativa = rutaCopiada;
+                    btnfotoguardar.setText("Foto cargada: " + seleccionado.getName());
+                    verificarCampos();
+                }
             }
         });
 
@@ -221,7 +254,7 @@ public class CrearUsuarios extends JFrame {
             u.password = new String(pass2.getPassword());
             u.telefono = tl2.getText().trim();
             u.correo = ce2.getText().trim();
-            u.foto = (archivoSeleccionado != null) ? archivoSeleccionado.getAbsolutePath() : "";
+            u.foto = rutaFotoRelativa;
 
             ListaUsuarios.usuarios.add(u);
             ListaUsuarios.guardar();
@@ -261,8 +294,8 @@ public class CrearUsuarios extends JFrame {
                 usuarioEditando.password = new String(pass2.getPassword());
                 usuarioEditando.telefono = tl2.getText().trim();
                 usuarioEditando.correo = ce2.getText().trim();
-                if (archivoSeleccionado != null) {
-                    usuarioEditando.foto = archivoSeleccionado.getAbsolutePath();
+                if (!rutaFotoRelativa.isEmpty()) {
+                    usuarioEditando.foto = rutaFotoRelativa;
                 }
 
                 ListaUsuarios.guardar();
