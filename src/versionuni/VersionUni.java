@@ -14,12 +14,14 @@ public class VersionUni extends JFrame {
     private JPanel pantalla;
 
     public VersionUni() {
-        setTitle("BookUser - Adrian Lopez y Leidy Niño");
+
+       setTitle("BookUser - Adrian Lopez y Leidy Niño");
         setContentPane(pantalla);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        setLocationRelativeTo(null);
         setSize(800, 500);
+        setLocationRelativeTo(null);
+
 
         ListaUsuarios.cargar();
 

@@ -272,6 +272,17 @@
           <text value=""/>
         </properties>
       </component>
+      <component id="7cb09" class="javax.swing.JButton" binding="btnactualizar">
+        <constraints>
+          <grid row="12" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font name="Arial" size="12" style="1"/>
+          <foreground color="-16777216"/>
+          <text value="actulizar info"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 public class GeneradorPDF {
 
     public static void exportarUsuarios() {
-        // 1. PEDIR DÓNDE GUARDAR EL PDF
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar Reporte PDF");
         fileChooser.setSelectedFile(new File("Reporte_Usuarios.pdf"));
@@ -34,16 +34,16 @@ public class GeneradorPDF {
                 PdfWriter.getInstance(documento, new FileOutputStream(ruta));
                 documento.open();
 
-                // TÍTULO
+
                 Paragraph titulo = new Paragraph("BookUser - Lista de Usuarios Registrados\n\n");
                 titulo.setAlignment(Paragraph.ALIGN_CENTER);
                 documento.add(titulo);
 
-                // TABLA DE 6 COLUMNAS (Agregamos la columna "Foto")
-                PdfPTable tabla = new PdfPTable(6);
-                tabla.setWidthPercentage(100); // Que ocupe todo el ancho
 
-                // Ajustar proporciones de las columnas (La foto será un poco más ancha)
+                PdfPTable tabla = new PdfPTable(6);
+                tabla.setWidthPercentage(100);
+
+
                 float[] anchos = {0.5f, 1f, 2f, 1.5f, 2f, 1.5f};
                 tabla.setWidths(anchos);
 
@@ -61,18 +61,18 @@ public class GeneradorPDF {
                     tabla.addCell(u.username);
                     tabla.addCell(u.correo);
 
-                    // LÓGICA PARA LA FOTO
+
                     PdfPCell celdaFoto;
                     try {
-                        // Intentamos cargar la foto desde la ruta guardada
+
                         Image foto = Image.getInstance(u.foto);
-                        // Ajustamos la foto para que quepa en la celda
+
                         foto.scaleToFit(80, 80);
                         celdaFoto = new PdfPCell(foto);
                         celdaFoto.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                         celdaFoto.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
                     } catch (Exception e) {
-                        // Si la foto no se encuentra o falla, ponemos un texto
+
                         celdaFoto = new PdfPCell(new Paragraph("Sin foto"));
                         celdaFoto.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                         celdaFoto.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);

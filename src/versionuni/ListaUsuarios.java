@@ -22,7 +22,7 @@ public class ListaUsuarios {
     }
 
     public static void cargar() {
-        // RUTA CORREGIDA PARA CARGAR:
+
         File archivo = new File("C:\\Users\\FLIA LOPEZ\\BookUsers-D1\\usuarios.txt");
 
         if (!archivo.exists()) return;
