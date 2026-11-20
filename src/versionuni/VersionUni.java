@@ -33,7 +33,8 @@ public class VersionUni extends JFrame {
         });
 
         creditosDelCreadorButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Adrian Lopez y Leidy Niño");
+            Creditos ventanaCreditos = new Creditos();
+            ventanaCreditos.setVisible(true);
         });
 
         crearUsuariosButton.addActionListener(e -> {

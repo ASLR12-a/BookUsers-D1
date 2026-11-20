@@ -1,2 +1,3 @@
 1;CC;1097194789;Leidy;Niño Castañeda;ncleidy;adrianteodio;3104657236;ninocastanedaleidy@gmail.com;fotos_usuarios\1795124838878_7272.jpg
 2;CC;1097184788;Ariadna;Niño Castañeda;ncariadna;12345;3104686847;ninocastanedaariadna.9420@gmail.com;fotos_usuarios\1795125151961_8282.jpeg
+3;CC;1096207293;adrian sneyder;lopez rodriguez;lradrian;1212;3162329692;adriansneyder12@gmail.com;fotos_usuarios\1795134438630_1212.jpeg
